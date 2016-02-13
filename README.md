@@ -46,4 +46,4 @@
 	* http://tutorial.djangogirls.org
 
 #issues
-	[link to issues!](issues)
+	[a link](https://github.com/muhilvarnan/django-photography-site/issues)
