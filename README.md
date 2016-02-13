@@ -45,4 +45,4 @@
 	* https://jquery.com
 	* http://tutorial.djangogirls.org
 
-[Issues](https://github.com/muhilvarnan/django-photography-site/issues	)
+[Issues](issues)
