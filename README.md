@@ -29,6 +29,12 @@
 			*	python manage.py makemigrations
 			*	python manage.py migrate
 
+	* 	Create a super user
+			*	python manage.py createsuperuser
+	
+	*	Runserver 
+			* 	python manage.py runserver
+
 #configuration - settings.py
 	* Following configuration can be changed in settings.py file in the base app
 		*	WEBSITE_TITLE - Website title 
@@ -40,4 +46,4 @@
 	* http://tutorial.djangogirls.org
 
 #issues
-	* Make sure, category count more than 2
+	[link to issues!](issues)
