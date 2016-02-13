@@ -1,0 +1,92 @@
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{title}}</title>
+	<meta name="description" content="A photography-inspired website layout with an expanding stack slider and a background image tilt effect" />
+	<meta name="keywords" content="photography, template, layout, effect, expand, image stack, animation, flickity, tilt" />
+	<meta name="author" content="Codrops" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/static/photos/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="/static/photos/css/flickity.css" />
+	<link rel="stylesheet" type="text/css" href="/static/photos/css/main.css" />
+	<script src="/static/photos/js/modernizr.custom.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="hero">
+			<div class="hero__back hero__back--static"></div>
+			<div class="hero__back hero__back--mover"></div>
+			<div class="hero__front"></div>
+		</div>
+		<header class="codrops-header">
+			<h1 class="codrops-title">{{title}}</h1>
+		</header>
+		<div class="stack-slider">
+			<div class="stacks-wrapper">
+			{% for item in data %}
+    			<div class="stack">
+					<h2 class="stack-title">
+						<a href="#" data-text="Flowers">
+							<span>{{item.category}}</span>
+						</a>
+					</h2>
+					{% for image in item.imageSet %}
+						<div class="item">
+							<div class="item__content">
+								{% thumbnail image.image "600x400" crop="center" as im %}
+    								<img src="{{ im.url }}" alt="{{image.title}}"/>
+								{% endthumbnail %}
+								<h3 class="item__title">{{image.title}}<span class="item__date">{{image.created_datetime}}</span></h3>
+								<div class="item__details">
+									<ul>
+										<li><i class="icon icon-camera"></i><span>{{image.cameraModel}}</span></li>
+										<li><i class="icon icon-focal_length"></i><span>{{image.focalLength}}</span></li>
+										<li><i class="icon icon-aperture"></i><span>&fnof;/{{image.aperature}}</span></li>
+										<li><i class="icon icon-exposure_time"></i><span>{{image.exposureTime}}</span></li>
+										<li><i class="icon icon-iso"></i><span>{{image.iso}}</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					<!--<div class="item">
+						<div class="item__content item__content--related">
+							<p>If you enjoyed this demo you might also like:</p>
+							<a class="	media-item" href="http://tympanus.net/Tutorials/SlidingHeaderLayout/">
+								<img class="media-item__img" src="img/related/SlidingHeaderLayout.jpg" />
+								<h3 class="media-item__title">Sliding Header Layout</h3>
+							</a>
+							<a class="media-item" href="http://tympanus.net/Development/ScatteredPolaroidsGallery/">
+								<img class="media-item__img" src="img/related/ScatteredPolaroidGallery.jpg" />
+								<h3 class="media-item__title">Scattered Polaroid Gallery</h3>
+							</a>
+						</div>
+					</div>-->
+				</div>
+			{% endfor %}
+			</div>
+			<!-- /stacks-wrapper -->
+		</div>
+		<!-- /stacks -->
+		<img class="loader" src="/static/photos/img/three-dots.svg" width="60" alt="Loader image" />
+	</div>
+	<!-- /container -->
+	<!-- Flickity v1.0.0 http://flickity.metafizzy.co/ -->
+	<script src="/static/photos/js/flickity.pkgd.min.js"></script>
+	<script src="/static/photos/js/smoothscroll.js"></script>
+	<script src="/static/photos/js/main.js"></script>
+	<script src="/static/js/jquery-1.12.0.min.js"></script>
+	
+	<script type="text/javascript">
+	 jQuery(document).ready(function() {
+	 	$('.hero > div ').css({
+	 		'background':'#212121 url({{BASE_BACKGROUND_IMAGE}}) no-repeat 50% 0'
+	 	});
+	 });
+	</script>
+</body>
+</html>
