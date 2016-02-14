@@ -1,0 +1,139 @@
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>{{title}}</title>
+		<meta name="description" content="{{description}}" />
+		<meta name="keywords" content="{{keywords}}" />
+		<meta name="author" content="{{author}}" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="/static/photos/category/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="/static/photos/category/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="/static/photos/category/css/component.css" />
+		<script src="/static/photos/category/js/modernizr.custom.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+	</head>
+	<body>
+		<div id="fb-root"></div>
+		<script>
+				(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) return;
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+		</script>
+		<div class="container">
+			<!-- Top Navigation -->
+			<div class="codrops-top clearfix">
+				<a class="codrops-icon codrops-icon-prev" href="/"><span>Back To Home Page</span></a>
+			</div>
+			<header class="codrops-header">
+				<h1>{{data.category}}</h1>
+			</header>
+			<section class="grid3d vertical" id="grid3d">
+				<div class="grid-wrap">
+					<div class="grid">
+						{% for image in data.imageSet %}
+							{% thumbnail image.image "340x227" crop="center" as im %}
+    							<figure>
+    								<img src="{{ im.url }}" alt="{{image.title}}"/>
+    							</figure>
+							{% endthumbnail %}
+						{% endfor %}
+					</div>
+				</div><!-- /grid-wrap -->
+				<div class="content">
+					{% for image in data.imageSet %}
+						<div>
+							<div class="dummy-img">
+								{% thumbnail image.image "600x400" crop="center" as im %}
+	    							<figure>
+	    								<img src="{{ im.url }}" alt="{{image.title}}" width="100%" />
+	    							</figure>
+								{% endthumbnail %}
+							</div>
+							<div class="image-data">
+								<h3>{{image.title}}</h3>
+								<p>{{image.description}}</p>
+								<center>
+									<table>
+										<tr>
+										    {% if image.share_googleplus == True  %} 
+												<td class="google-plus">
+													<div class="g-plus" data-action="share" data-annotation="none" data-height="24" data-href="{{baseDomain}}/image/{{image.id}}"></div>
+												</td>
+											{% endif %}
+											{% if image.share_facebook == True  %}
+											<td>
+												<div class="fb-share-button" data-href="{{baseDomain}}/image/{{image.id}}" data-layout="button"></div>
+											</td>
+											{% endif %}
+											{% if image.share_twitter == True  %}
+											<td class="twitter">
+												<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{baseDomain}}/image/{{image.id}}">Tweet</a>
+											</td>
+											{% endif %}
+										</tr>
+									</table>
+								</center>
+								<div class="pic-info">
+									<ul>
+										<li>
+											<h4>Camera</h4>
+											<p>{{image.cameraModel}}</p>
+										</li>
+										<li>
+											<h4>Lens</h4>
+											<p>{{image.cameraLens}}</p>
+										</li>
+										<li>
+											<h4>Focal Length</h4>
+											<p>{{image.focalLength}}</p>
+										</li>
+										<li>
+											<h4>Aperature</h4>
+											<p>{{image.aperature}}</p>
+										</li>
+										<li>
+											<h4>Exposure Time</h4>
+											<p>{{image.exposureTime}}</p>
+										</li>
+										<li>
+											<h4>ISO</h4>
+											<p>{{image.iso}}</p>
+										</li>
+										<div style="clear: both;margin-bottom:2% "></div>
+									</ul>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					<span class="loading"></span>
+					<span class="icon close-content"></span>
+				</div>
+			</section>
+			<section>
+				<div id="slider" class="sp-slider-wrapper">
+					<nav>
+						<a href="/category/{{data.category.id}}/?page={{data.paginationData.prevPage}}"  {% if data.paginationData.prevPage == False  %} class="deactive" {% endif %}><</a>
+						<a href="#" class="pagination-info"><span>{{data.paginationData.currentPage}}</span>/{{data.paginationData.totalPages}}</a>
+						<a href="/category/{{data.category.id}}/?page={{data.paginationData.nextPage}}" {% if data.paginationData.nextPage == False  %} class="deactive" {% endif %}>></a>
+					</nav>
+				</div>
+			</section>
+		</div><!-- /container -->
+		<script src="/static/photos/category/js/classie.js"></script>
+		<script src="/static/photos/category/js/helper.js"></script>
+		<script src="/static/photos/category/js/grid3d.js"></script>
+		<script>
+			new grid3D( document.getElementById( 'grid3d' ) );
+		</script>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+		</script>
+	</body>
+</html>

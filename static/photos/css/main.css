@@ -775,3 +775,10 @@ button:focus {
 		transform: translate3d(0, 40vh, 0);
 	}
 }
+
+.see-more {
+	border:1px solid #CCC;
+	padding:10px;
+	border-radius:4px;
+	box-shadow: 0px 0px 5px #CCC;
+}

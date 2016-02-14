@@ -135,5 +135,9 @@ THUMBNAIL_DEBUG = True
 
 #Site settings
 WEBSITE_TITLE = 'Muhilvarnan Photography'
+WEBSITE_DESCRIPTION = 'A photography-inspired website layout with an expanding stack slider and a background image tilt effect'
+WEBSITE_KEYWORDS = 'photography, template, layout, effect, expand, image stack, animation, flickity, tilt'
+WEBSITE_AUTHOR = 'muhilvarnan.v'
+WEBSITE_BASE_DOMAIN = 'http://localhost:8000'
 BASE_BACKGROUND_IMAGE_STATIC_PATH = '/static/photos/img/bg.jpg'
-
+IMAGE_PAGINATION_COUNT = 6

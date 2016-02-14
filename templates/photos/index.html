@@ -6,16 +6,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{{title}}</title>
-	<meta name="description" content="A photography-inspired website layout with an expanding stack slider and a background image tilt effect" />
-	<meta name="keywords" content="photography, template, layout, effect, expand, image stack, animation, flickity, tilt" />
-	<meta name="author" content="Codrops" />
+	<meta name="description" content="{{description}}" />
+	<meta name="keywords" content="{{keywords}}" />
+	<meta name="author" content="{{author}}" />
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="/static/photos/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="/static/photos/css/flickity.css" />
 	<link rel="stylesheet" type="text/css" href="/static/photos/css/main.css" />
 	<script src="/static/photos/js/modernizr.custom.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
+	<div id="fb-root"></div>
+	<script>
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<div class="container">
 		<div class="hero">
 			<div class="hero__back hero__back--static"></div>
@@ -23,7 +34,7 @@
 			<div class="hero__front"></div>
 		</div>
 		<header class="codrops-header">
-			<h1 class="codrops-title">{{title}}</h1>
+			<h1 class="codrops-title" >{{title}}</h1>
 		</header>
 		<div class="stack-slider">
 			<div class="stacks-wrapper">
@@ -44,28 +55,35 @@
 								<div class="item__details">
 									<ul>
 										<li><i class="icon icon-camera"></i><span>{{image.cameraModel}}</span></li>
-										<li><i class="icon icon-focal_length"></i><span>{{image.focalLength}}</span></li>
-										<li><i class="icon icon-aperture"></i><span>&fnof;/{{image.aperature}}</span></li>
-										<li><i class="icon icon-exposure_time"></i><span>{{image.exposureTime}}</span></li>
-										<li><i class="icon icon-iso"></i><span>{{image.iso}}</span></li>
+										<li><i class="icon icon-focal_length"></i><span>{{image.cameraLens}}</span></li>
+										<li><a href="/image/{{image.id}}" style="border-bottom:1px solid">See More Info</a></span></li>
+										{% if image.share_googleplus == True  %}
+										<li>
+											<div class="g-plus" data-action="share" data-annotation="none" data-height="24" data-href="{{baseDomain}}/image/{{image.id}}"></div>
+										</li>
+										{% endif %}
+										{% if image.share_googleplus == True  %}
+										<li>
+											<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{baseDomain}}/image/{{image.id}}">Tweet</a>
+										</li>
+										{% endif %}
+										{% if image.share_facebook == True  %}
+										<li>
+											<div class="fb-share-button" data-href="{{baseDomain}}/image/{{image.id}}" data-layout="button"></div>
+										</li>
+										{% endif %}
 									</ul>
 								</div>
 							</div>
 						</div>
 					{% endfor %}
-					<!--<div class="item">
+					<div class="item">
 						<div class="item__content item__content--related">
-							<p>If you enjoyed this demo you might also like:</p>
-							<a class="	media-item" href="http://tympanus.net/Tutorials/SlidingHeaderLayout/">
-								<img class="media-item__img" src="img/related/SlidingHeaderLayout.jpg" />
-								<h3 class="media-item__title">Sliding Header Layout</h3>
-							</a>
-							<a class="media-item" href="http://tympanus.net/Development/ScatteredPolaroidsGallery/">
-								<img class="media-item__img" src="img/related/ScatteredPolaroidGallery.jpg" />
-								<h3 class="media-item__title">Scattered Polaroid Gallery</h3>
-							</a>
+							<center>
+								<a class="see-more" href="/category/{{item.category.id}}">See more of {{item.category.title}}</a>
+							</center>
 						</div>
-					</div>-->
+					</div>
 				</div>
 			{% endfor %}
 			</div>
@@ -87,6 +105,8 @@
 	 		'background':'#212121 url({{BASE_BACKGROUND_IMAGE}}) no-repeat 50% 0'
 	 	});
 	 });
+	</script>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 	</script>
 </body>
 </html>
