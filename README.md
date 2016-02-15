@@ -51,6 +51,16 @@
 		* 	BASE_BACKGROUND_IMAGE_STATIC_PATH - Background image in the home page, django static file path
 		*	IMAGE_PAGINATION_COUNT - Image pagination count in category listing page
 
+# Docker 
+	* To Pull docker images
+		*	docker pull muhilvarnan/django_photography_site
+	* To run docker container 
+		*	docker run -i -t -p 8000:8000 muhilvarnan/django_photography_site /bin/bash
+	* To Run application inside container (In this version, django is not service to run as daemon)- 
+		*	. Env/bin/activate
+		*	cd django-photography-site/
+		*	python manage.py runserver 0.0.0.0:8000
+	 
 # References and sources
 	* http://tympanus.net/codrops/
 	* https://jquery.com
