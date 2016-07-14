@@ -20,5 +20,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^cms-administrator/', admin.site.urls),
+    url(r'^api/', include('api.urls', namespace='api')),
     url(r'', include('photos.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
