@@ -15,7 +15,8 @@ class category(models.Model):
 	)
 	title = models.CharField(max_length=255)
 	status = models.IntegerField(default=1, choices=STATUS_CHOICES)
-
+	image = ImageField(upload_to='category')
+	
 	def __str__(self):
 		return self.title
 
