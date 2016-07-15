@@ -15,7 +15,7 @@ def get_category_list():
 			temp = {}
 			temp['id'] = categoryItem.id
 			temp['title'] = categoryItem.title
-			temp['image'] = settings.WEBSITE_BASE_DOMAIN +get_thumbnail(categoryItem.image, '1200x600', crop='center', quality=99).url
+			temp['image'] = settings.WEBSITE_BASE_DOMAIN +get_thumbnail(categoryItem.image, '600x400', crop='center', quality=99).url
 			print temp['image']
 			result.append(temp)
 		return {
@@ -41,7 +41,7 @@ def get_category_image_list(categoryId):
 			temp = {}
 			temp['id'] = imageItem.id
 			temp['title'] = imageItem.title
-			temp['image'] = settings.WEBSITE_BASE_DOMAIN +get_thumbnail(imageItem.image, '1200x700', crop='center', quality=99).url
+			temp['image'] = settings.WEBSITE_BASE_DOMAIN +get_thumbnail(imageItem.image, '600x400', crop='center', quality=99).url
 			print temp['image']
 			result.append(temp)
 		return {
