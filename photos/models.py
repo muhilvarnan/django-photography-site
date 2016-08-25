@@ -16,6 +16,7 @@ class category(models.Model):
 	title = models.CharField(max_length=255)
 	status = models.IntegerField(default=1, choices=STATUS_CHOICES)
 	image = ImageField(upload_to='category')
+	nav_icon = ImageField(upload_to='category_nav_icon')
 	
 	def __str__(self):
 		return self.title

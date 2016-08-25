@@ -15,8 +15,7 @@ def get_category_list():
 			temp = {}
 			temp['id'] = categoryItem.id
 			temp['title'] = categoryItem.title
-			temp['image'] = settings.WEBSITE_BASE_DOMAIN +get_thumbnail(categoryItem.image, '600x400', crop='center', quality=99).url
-			print temp['image']
+			temp['nav_icon'] = settings.WEBSITE_BASE_DOMAIN  + categoryItem.nav_icon.url
 			result.append(temp)
 		return {
 			'status':True,
