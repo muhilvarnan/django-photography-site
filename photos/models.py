@@ -5,6 +5,24 @@ from sorl.thumbnail import ImageField
 from django.core.paginator import Paginator
 from django.conf import settings
 
+class Device(models.Model):
+	"""
+	Device model
+	"""
+	DEVICE_CHOICES = (
+		("ANDROID", "ANDROID"),
+		("IOS","IOS"))
+	deviceType = models.CharField(max_length=255,choices=DEVICE_CHOICES)
+	deviceId = models.CharField(max_length=255)
+	deviceToken = models.CharField(max_length=255)
+
+class Subscribe(models.Model):
+	"""
+	subscriber model
+	"""
+	email = models.CharField(max_length=255)
+	devices = models.ManyToManyField(Device)
+
 class category(models.Model):
 	"""
 	Photos category Model

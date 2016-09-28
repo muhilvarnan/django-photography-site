@@ -1,9 +1,10 @@
 from photos.models import category
-from photos.models import Image
+from photos.models import Image, Device, Subscribe
 from sorl.thumbnail import get_thumbnail
 from rest_framework import status
 from django.conf import settings
 from django.core.paginator import Paginator
+
 
 def get_feed_activity_list(request):
 	"""
@@ -95,6 +96,48 @@ def get_category_image_list(request, categoryId):
 				'items':result
 			}
 		}
+	except Exception, e:
+		return {
+			'status':False,
+			'details':str(e),
+			'statusCode':status.HTTP_500_INTERNAL_SERVER_ERROR
+		}
+
+def device_entry(request):
+	"""
+	device entry
+	"""
+	try:
+		deviceType = request.data.get("deviceType")
+		deviceId = request.data.get("deviceId")
+		deviceToken = request.data.get("deviceToken")
+		deviceObj, isNew = Device.objects.get_or_create(deviceType=deviceType, deviceId=deviceId, deviceToken=deviceToken)
+		return {
+			'status':True,
+			'details':deviceObj
+		}
+	except Exception, e:
+		return {
+			'status':False,
+			'details':str(e),
+			'statusCode':status.HTTP_500_INTERNAL_SERVER_ERROR
+		}
+
+def post_subscribe(request):
+	"""
+	post subscribe
+	"""
+	try:
+		email = request.data.get("email")
+		result = device_entry(request)
+		if result.get("status"):
+			subscribeObj, isNew = Subscribe.objects.get_or_create(email=email)
+			subscribeObj.devices.add(result.get('details'))
+			subscribeObj.save()
+			return {
+				'status':True,
+				'details':"Email has registered succesfully"
+			}
 	except Exception, e:
 		return {
 			'status':False,
