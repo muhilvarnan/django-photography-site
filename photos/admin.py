@@ -10,9 +10,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class ImageAdmin(AdminImageMixin, admin.ModelAdmin):
     list_display  = ['title','image','cameraModel', 'category', 'status']
 
-class ImageAdmin(AdminImageMixin, admin.ModelAdmin):
-    list_display  = ['title','image','cameraModel', 'category', 'status']
-
 admin.site.register(category, CategoryAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Subscribe)
